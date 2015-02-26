@@ -2,7 +2,7 @@ AddHandler php5-cgi .php
 
 # Enable rewrite engine and route requests to framework
 RewriteEngine On
-#RewriteBase /selfoss
+RewriteBase /
 
 # rule for favicons
 RewriteRule !data/favicons/(.*)$ - [C]
