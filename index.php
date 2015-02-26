@@ -12,31 +12,31 @@ $f3->set('auth', new \helpers\Authentication());
 
 // define js files
 $f3->set('js', array(
-    'public/js/jquery-2.1.1.min.js',
-    'public/js/jquery-ui.js',
-    'public/js/jquery.mCustomScrollbar.min.js',
-    'public/js/jquery.mousewheel.min.js',
-    'public/js/lazy-image-loader.js',
-    'public/js/spectrum.js',
-    'public/js/jquery.hotkeys.js',
-    'public/js/selfoss-base.js',
-    'public/js/selfoss-events.js',
-    'public/js/selfoss-events-navigation.js',
-    'public/js/selfoss-events-search.js',
-    'public/js/selfoss-events-entries.js',
-    'public/js/selfoss-events-entriestoolbar.js',
-    'public/js/selfoss-events-sources.js',
-    'public/js/selfoss-shortcuts.js',
-    'public/js/jquery.fancybox.pack.js'
+    'assets/js/jquery-2.1.1.min.js',
+    'assets/js/jquery-ui.js',
+    'assets/js/jquery.mCustomScrollbar.min.js',
+    'assets/js/jquery.mousewheel.min.js',
+    'assets/js/lazy-image-loader.js',
+    'assets/js/spectrum.js',
+    'assets/js/jquery.hotkeys.js',
+    'assets/js/selfoss-base.js',
+    'assets/js/selfoss-events.js',
+    'assets/js/selfoss-events-navigation.js',
+    'assets/js/selfoss-events-search.js',
+    'assets/js/selfoss-events-entries.js',
+    'assets/js/selfoss-events-entriestoolbar.js',
+    'assets/js/selfoss-events-sources.js',
+    'assets/js/selfoss-shortcuts.js',
+    'assets/js/jquery.fancybox.pack.js'
 ));
 
 // define css files
 $css = array(
-    'public/css/jquery.mCustomScrollbar.css',
-    'public/css/jquery.fancybox.css',
-    'public/css/spectrum.css',
-    'public/css/reset.css',
-    'public/css/style.css'
+    'assets/css/jquery.mCustomScrollbar.css',
+    'assets/css/jquery.fancybox.css',
+    'assets/css/spectrum.css',
+    'assets/css/reset.css',
+    'assets/css/style.css'
 );
 if(file_exists("user.css"))
     $css[] = "user.css";
@@ -56,7 +56,7 @@ $f3->route('GET /update',     'controllers\Index->update');   // text
 $f3->route('GET /badge',      'controllers\Index->badge');    // xml
 $f3->route('GET /win8notifs', 'controllers\Index->win8Notifications');    // xml
 
-// only for loggedin users or on public mode
+// only for loggedin users or on assets mode
 $f3->route('GET /rss',           'controllers\Rss->rss');           // rss
 $f3->route('GET /feed',          'controllers\Rss->rss');           // rss
 $f3->route('GET /items',         'controllers\Items->listItems');   // json

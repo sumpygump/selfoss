@@ -35,7 +35,7 @@ class BaseController {
      * @return void
     */
     public function needsLoggedInOrPublicMode() {
-        if(\F3::get('auth')->isLoggedin()!==true && \F3::get('public')!=1) {
+        if(\F3::get('auth')->isLoggedin()!==true && \F3::get('assets')!=1) {
             \F3::error(403);
         }
     }
