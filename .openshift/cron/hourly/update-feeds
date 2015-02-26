@@ -1,0 +1,3 @@
+#!/bin/bash
+date >> ${OPENSHIFT_LOG_DIR}/update-feeds.log
+php ${OPENSHIFT_REPO_DIR}/update.php >> ${OPENSHIFT_LOG_DIR}/update-feeds.log
