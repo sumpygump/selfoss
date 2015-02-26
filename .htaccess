@@ -19,9 +19,9 @@ RewriteRule !.(js|ico|gif|jpg|png|css|asc|txt|eot|woff|ttf|ttf|svg|xml)$ index.p
 # rule for files
 RewriteRule !favicons/ - [C]
 RewriteRule !thumbnails - [C]
-RewriteRule !public - [C]
+RewriteRule !assets - [C]
 RewriteRule !index.php - [C]
-RewriteRule (.*) public/$1 [L]
+RewriteRule (.*) assets/$1 [L]
 
 # deny requests for config files
 <FilesMatch ".(ini)$">
