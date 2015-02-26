@@ -1,0 +1,11 @@
+#!/bin/bash
+cd ${OPENSHIFT_REPO_DIR}
+
+# TODO: if web-data doesnt exist yet, move initial state data dir down there
+# instead of deleting it
+
+# Remove the (initial state) data directory here
+rm -rf data
+
+# Symlink to the one that exists down there
+ln -s ${OPENSHIFT_HOMEDIR}app-root/data/web-data data
