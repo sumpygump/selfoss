@@ -11,24 +11,28 @@ if($lang!='0' && $lang!='')
 $f3->set('auth', new \helpers\Authentication());
 
 // define js files
-$f3->set('js', array(
-    'assets/js/jquery-2.1.1.min.js',
-    'assets/js/jquery-ui.js',
-    'assets/js/jquery.mCustomScrollbar.min.js',
-    'assets/js/jquery.mousewheel.min.js',
-    'assets/js/lazy-image-loader.js',
-    'assets/js/spectrum.js',
-    'assets/js/jquery.hotkeys.js',
-    'assets/js/selfoss-base.js',
-    'assets/js/selfoss-events.js',
-    'assets/js/selfoss-events-navigation.js',
-    'assets/js/selfoss-events-search.js',
-    'assets/js/selfoss-events-entries.js',
-    'assets/js/selfoss-events-entriestoolbar.js',
-    'assets/js/selfoss-events-sources.js',
-    'assets/js/selfoss-shortcuts.js',
-    'assets/js/jquery.fancybox.pack.js'
-));
+$js=array(
+    'public/js/jquery-2.1.1.min.js',
+    'public/js/jquery-ui.js',
+    'public/js/jquery.mCustomScrollbar.min.js',
+    'public/js/jquery.mousewheel.min.js',
+    'public/js/lazy-image-loader.js',
+    'public/js/spectrum.js',
+    'public/js/jquery.hotkeys.js',
+    'public/js/selfoss-base.js',
+    'public/js/selfoss-shares.js',
+    'public/js/selfoss-events.js',
+    'public/js/selfoss-events-navigation.js',
+    'public/js/selfoss-events-search.js',
+    'public/js/selfoss-events-entries.js',
+    'public/js/selfoss-events-entriestoolbar.js',
+    'public/js/selfoss-events-sources.js',
+    'public/js/selfoss-shortcuts.js',
+    'public/js/jquery.fancybox.pack.js'
+);
+if(file_exists("user.js"))
+    $js[] = "user.js";
+$f3->set('js', $js);
 
 // define css files
 $css = array(
@@ -76,6 +80,7 @@ $f3->route('GET    /source/params',     'controllers\Sources->params');       //
 $f3->route('GET    /sources',           'controllers\Sources->show');         // html
 $f3->route('GET    /source',            'controllers\Sources->add');          // html
 $f3->route('GET    /sources/list',      'controllers\Sources->listSources');  // json
+$f3->route('GET    /sources/stats',     'controllers\Sources->sourcesStats');  // json
 $f3->route('POST   /source/@id',        'controllers\Sources->write');        // json
 $f3->route('POST   /source',            'controllers\Sources->write');        // json
 $f3->route('DELETE /source/@id',        'controllers\Sources->remove');       // json

@@ -249,15 +249,16 @@ class Web extends Prefab {
 	**/
 	protected function _curl($url,$options) {
 		$curl=curl_init($url);
-		curl_setopt($curl,CURLOPT_FOLLOWLOCATION,
-			$options['follow_location']);
+		if (!ini_get('open_basedir'))
+			curl_setopt($curl,CURLOPT_FOLLOWLOCATION,
+				$options['follow_location']);
 		curl_setopt($curl,CURLOPT_MAXREDIRS,
 			$options['max_redirects']);
+		curl_setopt($curl,CURLOPT_PROTOCOLS,CURLPROTO_HTTP|CURLPROTO_HTTPS);
+		curl_setopt($curl,CURLOPT_REDIR_PROTOCOLS,CURLPROTO_HTTP|CURLPROTO_HTTPS);
 		curl_setopt($curl,CURLOPT_CUSTOMREQUEST,$options['method']);
 		if (isset($options['header']))
 			curl_setopt($curl,CURLOPT_HTTPHEADER,$options['header']);
-		if (isset($options['user_agent']))
-			curl_setopt($curl,CURLOPT_USERAGENT,$options['user_agent']);
 		if (isset($options['content']))
 			curl_setopt($curl,CURLOPT_POSTFIELDS,$options['content']);
 		curl_setopt($curl,CURLOPT_ENCODING,'gzip,deflate');
@@ -280,6 +281,11 @@ class Web extends Prefab {
 		curl_exec($curl);
 		curl_close($curl);
 		$body=ob_get_clean();
+		if ($options['follow_location'] &&
+			preg_match('/^Location: (.+)$/m',implode(PHP_EOL,$headers),$loc)) {
+			$options['max_redirects']--;
+			return $this->request($loc[1],$options);
+		}
 		return array(
 			'body'=>$body,
 			'headers'=>$headers,
@@ -470,7 +476,9 @@ class Web extends Prefab {
 		$this->subst($options['header'],
 			array(
 				'Accept-Encoding: gzip,deflate',
-				'User-Agent: Mozilla/5.0 (compatible; '.php_uname('s').')',
+				'User-Agent: '.(isset($options['user_agent'])?
+					$options['user_agent']:
+					'Mozilla/5.0 (compatible; '.php_uname('s').')'),
 				'Connection: close'
 			)
 		);
