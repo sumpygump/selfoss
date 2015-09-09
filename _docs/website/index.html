@@ -28,22 +28,21 @@
             <li class="documentation">documentation</li>
             <li class="about">about</li>
             <li class="forum"><a href="/forum">forum</a></li>
-            <li class="download"><a href="selfoss-2.13-SNAPSHOT.zip">download</a></li>
+            <li class="download"><a href="https://github.com/SSilence/selfoss/releases/download/2.13/selfoss-2.15-SNAPSHOT.zip">download</a></li>
         </ul>
         
         <a id="header-fork" href="https://github.com/SSilence/selfoss"></a>
         
         <div id="header-logo"></div>
         
-        <!--<div id="header-just-updated"></div>-->
+        <div id="header-just-updated"></div>
         
-        <a id="header-download" href="selfoss-2.13-SNAPSHOT.zip"><span>download selfoss 2.13-SNAPSHOT</span></a>
+        <a id="header-download" href="https://github.com/SSilence/selfoss/releases/download/2.13/selfoss-2.15-SNAPSHOT.zip"><span>download selfoss 2.15-SNAPSHOT</span></a>
         
         <a id="header-donate" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LR67F3T9DMSC8"><span>donate</span></a>
         
         <div id="header-appstores">
             <a href="https://play.google.com/store/apps/details?id=fr.ydelouis.selfoss"><img alt="Android app on Google Play" src="images/googleplay.png" /></a>
-            <a href="https://itunes.apple.com/us/app/cataracta/id817392033?mt=8&uo=4" target="itunes_store"><img src="images/appstore.png" /></a>
         </div>
         
         <div id="header-donate-tooltipp"><span>selfoss is completely free!<br />But if you like selfoss then feel free to donate the programmer a beer</span></div>
@@ -94,7 +93,7 @@
             <div class="documentation-entry">
                 <p>selfoss is not a hosted service. It has to be installed on your own webserver. This webserver must fulfill the following requirements (which are available from most providers)</p>
                 <ul>
-                    <li>PHP 5.3 or higher</li>
+                    <li>PHP 5.3 or higher with the php-gd extension enabled</li>
                     <li>MySQL, PostgreSQL or Sqlite</li>
                     <li>Apache Webserver (ngnix and lighttpd also possible)</li>
                 </ul>
@@ -104,6 +103,7 @@
                 <p>selfoss supports all modern browsers, including Mozilla Firefox, Safari, Google Chrome, Opera and Internet Explorer. selfoss also supports mobile browsers on iPad, iPhone, Android and other devices.</p>
             </div>
             
+			<a name="installation" /> 
             <h2>Installation</h2>
             <div class="documentation-entry">
                 <p>selfoss is a lightweight php based application. Just follow the simple installation instructions:</p>
@@ -113,12 +113,13 @@
                     <li>Make the directories data/cache, data/favicons, data/logs, data/thumbnails, data/sqlite and public/ writeable</li>
                     <li>Insert database access data in config.ini (see below &mdash; you have not to change anything if you would like to use sqlite)</li>
                     <li>You don't have to install the database, it will be created automatically</li>
-                    <li>Create cronjob for updating feeds and point it to http://yoururl.com/update via wget or curl. You can also execute the update.php from commandline.</li>
+                    <li>Create cronjob for updating feeds and point it to http://yoururl.com/update via wget or curl. You can also execute the cliupdate.php from commandline.</li>
                 </ol>
                 
-                For further questions or on any problem use our <a href="forum">support forum</a>.
+                For further questions or any problems, use our <a href="forum">support forum</a>. For a more detailed step-by-step example installation, please visit the <a href="https://github.com/SSilence/selfoss/wiki/">wiki</a>.
             </div>
 
+			<a name="configuration" /> 
             <h2>Configuration</h2>
             <div class="documentation-entry">
                 <p>Configuration is optional. Any settings in config.ini will override the settings in defaults.ini. To customize settings follow these instructions:</p>
@@ -170,6 +171,7 @@ db_port=3306</code>
                 If you are a user of the google reader then use http://www.google.com/reader/subscriptions/export or https://www.google.com/takeout/ to get all your feeds in one opml file.
             </div>
             
+			<a name="configuration_params" /> 
             <h2>Configuration</h2>
             <div class="documentation-entry">
                 <p>selfoss offers the following configuration parameters. You can set the config parameters in the <code>config.ini</code> file.</p>
@@ -308,6 +310,10 @@ db_port=3306</code>
                         <td class="documentation-first-column">auto_hide_read_on_mobile</td>
                         <td>hide read articles on mobile devices</td>
                     </tr>
+                    <tr>
+                        <td class="documentation-first-column">env_prefix</td>
+                        <td>only consider ENV variables that start with this prefix as additional config variables. Defaults to "SELFOSS_".</td>
+                    </tr>
                 </table>
             </div>
             
@@ -428,8 +434,6 @@ db_port=3306</code>
                     If you want to get the newest entries from your own source (e.g. an IMAP Email Account, Log Files or any data from your own application), you can include a new spout in your selfoss stream by writing just one php class (saved in one php file).
                 </p>
                 <p>
-                    A german speaking tutorial on how to add own data sources can be found on <a href="http://www.aditu.de/2011/10/17/selfoss-eigene-datenquellen-erstellen/">http://www.aditu.de</a>.
-                
                     Create a new php file under <code>/spouts/your_spouts/your_spout.php</code> (choose a name for <code>your_spouts</code> and <code>your_spout</code>). The easiest way is to copy the <code><a href="https://github.com/SSilence/selfoss/blob/master/spouts/rss/feed.php">/spouts/rss/feed.php</a></code> and to modify this file.
                 </p>
                 
